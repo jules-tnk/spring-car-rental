@@ -1,6 +1,6 @@
 package com.example.springcarrental.controller.impl;
 
-import com.example.springcarrental.controller.AgencyController;
+import com.example.springcarrental.controller.GenericController;
 import com.example.springcarrental.dto.AgencyDTO;
 import com.example.springcarrental.mapper.AgencyMapper;
 import com.example.springcarrental.model.Agency;
@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 
 @RequestMapping("/api/agency")
 @RestController
-public class AgencyControllerImpl implements AgencyController {
+public class AgencyControllerImpl implements GenericController<AgencyDTO, Long> {
     private final AgencyService agencyService;
     private final AgencyMapper agencyMapper = Mappers.getMapper(AgencyMapper.class);
 

@@ -1,6 +1,6 @@
 package com.example.springcarrental.service;
 
-import com.example.springcarrental.model.User;
+import com.example.springcarrental.model.AppUser;
 
-public interface UserService extends GenericService<User, Long> {
+public interface UserService extends GenericService<AppUser, Long> {
 }

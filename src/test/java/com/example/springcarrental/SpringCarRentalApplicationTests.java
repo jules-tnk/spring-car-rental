@@ -8,3 +8,6 @@ class SpringCarRentalApplicationTests {
 
     @Test
     void contextLoads() {
+    }
+
+}

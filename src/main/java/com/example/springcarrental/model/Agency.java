@@ -1,12 +1,9 @@
 package com.example.springcarrental.model;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+
 
 import javax.persistence.*;
 
 @Entity
-@Data
-@NoArgsConstructor
 public class Agency {
     @Id
     @GeneratedValue
@@ -17,14 +14,47 @@ public class Agency {
 
     private String address;
 
-    /*
-    @OneToOne
-    private User manager;
 
-    @OneToMany
-    private List<User> agents;
+    //GETTERS
+    public Long getId() {
+        return id;
+    }
 
-    @ManyToMany
-    private List<Car> cars;
-    */
+    public City getCity() {
+        return city;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+
+    //SETTERS
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setCity(City city) {
+        this.city = city;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+
+    //CONSTRUCTORS
+    public Agency(Long id, City city, String address) {
+        this.id = id;
+        this.city = city;
+        this.address = address;
+    }
+
+    public Agency(City city, String address) {
+        this.city = city;
+        this.address = address;
+    }
+
+    public Agency() {
+    }
 }

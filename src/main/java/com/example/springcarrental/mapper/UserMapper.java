@@ -1,11 +1,14 @@
 package com.example.springcarrental.mapper;
 
 import com.example.springcarrental.dto.UserDTO;
-import com.example.springcarrental.model.User;
+import com.example.springcarrental.model.AppUser;
 import org.mapstruct.Mapper;
 
 @Mapper
-public interface UserMapper extends GenericMapper<User, UserDTO> {
+public interface UserMapper extends GenericMapper<AppUser, UserDTO> {
     @Override
-    User asEntity(UserDTO dto);
+    AppUser asEntity(UserDTO dto);
+
+    @Override
+    UserDTO asDTO(AppUser user);
 }

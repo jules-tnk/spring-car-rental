@@ -1,14 +1,9 @@
 package com.example.springcarrental.model;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Data
-@NoArgsConstructor
 public class CarRental {
 
     enum Status{
@@ -22,14 +17,75 @@ public class CarRental {
     private Long id;
 
     @ManyToOne
-    private User user;
+    private AppUser appUser;
 
     @ManyToOne
-    private CarDescription carDescription;
+    private Car car;
 
     private double price;
 
     @OneToMany
     private List<Payment> payments;
 
+    //GETTERS AND SETTERS
+
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public AppUser getAppUser() {
+        return appUser;
+    }
+
+    public void setAppUser(AppUser appUser) {
+        this.appUser = appUser;
+    }
+
+    public Car getCar() {
+        return car;
+    }
+
+    public void setCar(Car car) {
+        this.car = car;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public List<Payment> getPayments() {
+        return payments;
+    }
+
+    public void setPayments(List<Payment> payments) {
+        this.payments = payments;
+    }
+
+    //CONSTRUCTORS
+    public CarRental(Long id, AppUser appUser, Car car, double price, List<Payment> payments) {
+        this.id = id;
+        this.appUser = appUser;
+        this.car = car;
+        this.price = price;
+        this.payments = payments;
+    }
+
+    public CarRental(AppUser appUser, Car car, double price, List<Payment> payments) {
+        this.appUser = appUser;
+        this.car = car;
+        this.price = price;
+        this.payments = payments;
+    }
+
+    public CarRental() {
+    }
 }

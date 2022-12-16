@@ -3,13 +3,14 @@ package com.example.springcarrental.controller.impl;
 import com.example.springcarrental.controller.UserController;
 import com.example.springcarrental.dto.UserDTO;
 import com.example.springcarrental.mapper.UserMapper;
-import com.example.springcarrental.model.User;
+import com.example.springcarrental.model.AppUser;
 import com.example.springcarrental.service.UserService;
 import org.mapstruct.factory.Mappers;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,18 +27,20 @@ public class UserControllerImpl implements UserController {
     }
 
     @Override
-    @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    //@ResponseStatus(HttpStatus.CREATED)
     public UserDTO save(@RequestBody UserDTO userDTO) {
-        User user = userMapper.asEntity(userDTO);
-        return userMapper.asDTO(userService.save(user));
+        System.out.println(userDTO);
+        AppUser appUser = userMapper.asEntity(userDTO);
+        System.out.println(appUser);
+        return userMapper.asDTO(userService.save(appUser));
     }
 
     @Override
     @GetMapping("/{id}")
     public UserDTO findById(@PathVariable("id") Long id) {
-        User user = userService.findById(id).orElse(null);
-        return userMapper.asDTO(user);
+        AppUser appUser = userService.findById(id).orElse(null);
+        return userMapper.asDTO(appUser);
     }
 
     @Override
@@ -55,7 +58,7 @@ public class UserControllerImpl implements UserController {
     @Override
     @GetMapping("/page-query")
     public Page<UserDTO> pageQuery(Pageable pageable) {
-        Page<User> userPage = userService.findAll(pageable);
+        Page<AppUser> userPage = userService.findAll(pageable);
         List<UserDTO> dtoList = userPage
                 .stream()
                 .map(userMapper::asDTO).collect(Collectors.toList());
@@ -65,7 +68,7 @@ public class UserControllerImpl implements UserController {
     @Override
     @PutMapping("/{id}")
     public UserDTO update(@RequestBody UserDTO userDTO, @PathVariable("id") Long id) {
-        User user = userMapper.asEntity(userDTO);
-        return userMapper.asDTO(userService.update(user, id));
+        AppUser appUser = userMapper.asEntity(userDTO);
+        return userMapper.asDTO(userService.update(appUser, id));
     }
 }

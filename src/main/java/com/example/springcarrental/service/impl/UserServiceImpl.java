@@ -1,7 +1,7 @@
 package com.example.springcarrental.service.impl;
 
 import com.example.springcarrental.dao.UserRepository;
-import com.example.springcarrental.model.User;
+import com.example.springcarrental.model.AppUser;
 import com.example.springcarrental.service.UserService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -22,13 +22,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User save(User entity) {
+    public AppUser save(AppUser entity) {
         return repository.save(entity);
     }
 
     @Override
-    public List<User> save(List<User> entities) {
-        return (List<User>) repository.saveAll(entities);
+    public List<AppUser> save(List<AppUser> entities) {
+        return (List<AppUser>) repository.saveAll(entities);
     }
 
     @Override
@@ -37,25 +37,25 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Optional<User> findById(Long id) {
+    public Optional<AppUser> findById(Long id) {
         return repository.findById(id);
     }
 
     @Override
-    public List<User> findAll() {
-        return (List<User>) repository.findAll();
+    public List<AppUser> findAll() {
+        return (List<AppUser>) repository.findAll();
     }
 
     @Override
-    public Page<User> findAll(Pageable pageable) {
-        Page<User> entityPage = repository.findAll(pageable);
-        List<User> entities = entityPage.getContent();
+    public Page<AppUser> findAll(Pageable pageable) {
+        Page<AppUser> entityPage = repository.findAll(pageable);
+        List<AppUser> entities = entityPage.getContent();
         return new PageImpl<>(entities, pageable, entityPage.getTotalElements());
     }
 
     @Override
-    public User update(User entity, Long id) {
-        Optional<User> optional = findById(id);
+    public AppUser update(AppUser entity, Long id) {
+        Optional<AppUser> optional = findById(id);
         if (optional.isPresent()) {
             return save(entity);
         }
