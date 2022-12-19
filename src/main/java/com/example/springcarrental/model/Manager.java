@@ -1,11 +1,16 @@
 package com.example.springcarrental.model;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
 @Entity
+@Data
+@NoArgsConstructor
 public class Manager {
     @Id
     @GeneratedValue
@@ -14,22 +19,9 @@ public class Manager {
     @OneToOne
     private Agency agency;
 
-    //GETTERS AND SETTERS
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     //CONSTRUCTORS
-
     public Manager(Long id) {
         this.id = id;
     }
 
-    public Manager() {
-    }
 }

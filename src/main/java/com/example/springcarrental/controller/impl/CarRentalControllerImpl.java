@@ -2,6 +2,7 @@ package com.example.springcarrental.controller.impl;
 
 import com.example.springcarrental.controller.CarRentalController;
 import com.example.springcarrental.dto.CarRentalDTO;
+import com.example.springcarrental.dto.incoming.CarRentalRequestDTO;
 import com.example.springcarrental.mapper.CarRentalMapper;
 import com.example.springcarrental.model.CarRental;
 import com.example.springcarrental.service.CarRentalService;
@@ -15,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@RequestMapping("/car-rental")
+@RequestMapping("/api/car-rental")
 @RestController
 public class CarRentalControllerImpl implements CarRentalController {
     private final CarRentalService carRentalService;
@@ -67,5 +68,10 @@ public class CarRentalControllerImpl implements CarRentalController {
     public CarRentalDTO update(@RequestBody CarRentalDTO carRentalDTO, @PathVariable("id") Long id) {
         CarRental carRental = carRentalMapper.asEntity(carRentalDTO);
         return carRentalMapper.asDTO(carRentalService.update(carRental, id));
+    }
+
+    @Override
+    public CarRentalDTO createNewRental(@RequestBody CarRentalRequestDTO carRentalRequest) {
+        return null;
     }
 }

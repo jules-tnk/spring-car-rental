@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@RequestMapping("/client")
+@RequestMapping("/api/client")
 @RestController
 public class ClientControllerImpl implements ClientController {
     private final ClientService clientService;

@@ -4,12 +4,6 @@ import javax.persistence.*;
 
 @Entity
 public class CarDescription {
-    public enum Color {
-        RED,
-        WHITE,
-        BLACK,
-        GREY
-    }
 
     @Id
     @GeneratedValue
@@ -18,8 +12,7 @@ public class CarDescription {
     @ManyToOne
     private CarModel model;
 
-    @Enumerated(EnumType.STRING)
-    private Color color;
+    private String color;
 
     private double pricePerHour;
 
@@ -29,7 +22,6 @@ public class CarDescription {
     private String imgUrl;
 
     //GETTERS AND SETTERS
-
     public Long getId() {
         return id;
     }
@@ -46,11 +38,11 @@ public class CarDescription {
         this.model = model;
     }
 
-    public Color getColor() {
+    public String getColor() {
         return color;
     }
 
-    public void setColor(Color color) {
+    public void setColor(String color) {
         this.color = color;
     }
 
@@ -79,7 +71,7 @@ public class CarDescription {
     }
 
     //CONSTRUCTORS
-    public CarDescription(Long id, CarModel model, Color color, double pricePerHour, Agency agency, String imgUrl) {
+    public CarDescription(Long id, CarModel model, String color, double pricePerHour, Agency agency, String imgUrl) {
         this.id = id;
         this.model = model;
         this.color = color;
@@ -88,7 +80,7 @@ public class CarDescription {
         this.imgUrl = imgUrl;
     }
 
-    public CarDescription(CarModel model, Color color, double pricePerHour, Agency agency, String imgUrl) {
+    public CarDescription(CarModel model, String color, double pricePerHour, Agency agency, String imgUrl) {
         this.model = model;
         this.color = color;
         this.pricePerHour = pricePerHour;

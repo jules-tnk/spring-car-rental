@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@RequestMapping("/manager")
+@RequestMapping("/api/manager")
 @RestController
 public class ManagerControllerImpl implements ManagerController {
     private final ManagerService managerService;

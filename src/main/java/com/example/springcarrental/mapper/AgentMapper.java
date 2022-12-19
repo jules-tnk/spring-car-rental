@@ -8,4 +8,6 @@ import org.mapstruct.Mapper;
 public interface AgentMapper extends GenericMapper<Agent, AgentDTO> {
     @Override
     Agent asEntity(AgentDTO dto);
+
+
 }

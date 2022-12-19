@@ -1,8 +1,13 @@
 package com.example.springcarrental.model;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 
 @Entity
+@Data
+@NoArgsConstructor
 public class Car {
     @Id
     private String licensePlate;
@@ -10,44 +15,16 @@ public class Car {
     @ManyToOne
     private CarDescription description;
 
+    private boolean isAvailable;
+
     @ManyToOne
     private Agency agency;
 
-    //GETTERS AND SETTERS
-
-    public String getLicensePlate() {
-        return licensePlate;
-    }
-
-    public void setLicensePlate(String licensePlate) {
-        this.licensePlate = licensePlate;
-    }
-
-    public CarDescription getDescription() {
-        return description;
-    }
-
-    public void setDescription(CarDescription description) {
-        this.description = description;
-    }
-
-    public Agency getAgency() {
-        return agency;
-    }
-
-    public void setAgency(Agency agency) {
-        this.agency = agency;
-    }
-
     //CONSTRUCTORS
-
-    public Car(String licensePlate, CarDescription description, Agency agency) {
+    public Car(String licensePlate, CarDescription description, boolean isAvailable, Agency agency) {
         this.licensePlate = licensePlate;
         this.description = description;
+        this.isAvailable = isAvailable;
         this.agency = agency;
-    }
-
-
-    public Car() {
     }
 }

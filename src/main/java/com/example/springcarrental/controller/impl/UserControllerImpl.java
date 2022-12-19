@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@RequestMapping("/user")
+@RequestMapping("/api/user")
 @RestController
 public class UserControllerImpl implements UserController {
     private final UserService userService;

@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@RequestMapping("/brand")
+@RequestMapping("/api/brand")
 @RestController
 public class BrandControllerImpl implements BrandController {
     private final BrandService brandService;

@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@RequestMapping("/car-description")
+@RequestMapping("/api/car-description")
 @RestController
 public class CarDescriptionControllerImpl implements CarDescriptionController {
     private final CarDescriptionService carDescriptionService;
