@@ -1,6 +1,7 @@
 package com.example.springcarrental.model;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
@@ -8,20 +9,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
+@EqualsAndHashCode(callSuper = true)
 @Entity
 @Data
 @NoArgsConstructor
-public class Manager {
-    @Id
-    @GeneratedValue
-    private Long id;
-
-    @OneToOne
-    private Agency agency;
-
-    //CONSTRUCTORS
-    public Manager(Long id) {
-        this.id = id;
-    }
+public class Manager extends AppUser {
 
 }

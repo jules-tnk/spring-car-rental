@@ -1,6 +1,5 @@
 package com.example.springcarrental.dto;
 
-import com.example.springcarrental.model.CarRental;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -9,11 +8,12 @@ import lombok.NoArgsConstructor;
 public class PaymentDTO {
     private Long id;
     private double amount;
-    private CarRental rental;
+
+    private String method;
 
     //CONSTRUCTORS
-    public PaymentDTO(double amount, CarRental rental) {
+    public PaymentDTO(double amount, String method) {
         this.amount = amount;
-        this.rental = rental;
+        this.method = method;
     }
 }

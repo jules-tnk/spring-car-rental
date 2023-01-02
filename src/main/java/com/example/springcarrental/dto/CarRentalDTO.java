@@ -13,17 +13,14 @@ import java.util.List;
 @NoArgsConstructor
 public class CarRentalDTO {
     private Long id;
-    private AppUser appUser;
+    private AppUser client;
     private Car car;
-    private double price;
     private List<Payment> payments;
 
     //CONSTRUCTORS
-
-    public CarRentalDTO(AppUser appUser, Car car, double price, List<Payment> payments) {
-        this.appUser = appUser;
+    public CarRentalDTO(AppUser client, Car car, List<Payment> payments) {
+        this.client = client;
         this.car = car;
-        this.price = price;
         this.payments = payments;
     }
 }

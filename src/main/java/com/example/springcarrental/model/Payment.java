@@ -19,12 +19,11 @@ public class Payment {
 
     private double amount;
 
-    @ManyToOne
-    private CarRental rental;
+    private String method;
 
     //CONSTRUCTORS
-    public Payment(double amount, CarRental rental) {
+    public Payment(double amount, String method) {
         this.amount = amount;
-        this.rental = rental;
+        this.method = method;
     }
 }

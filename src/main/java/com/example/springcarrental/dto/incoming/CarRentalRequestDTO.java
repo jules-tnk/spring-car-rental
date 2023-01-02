@@ -1,5 +1,6 @@
 package com.example.springcarrental.dto.incoming;
 
+import com.example.springcarrental.dto.PaymentDTO;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -8,5 +9,5 @@ import lombok.NoArgsConstructor;
 public class CarRentalRequestDTO {
     private String userEmail;
     private Long CarDescriptionId;
-    private double price;
+    private PaymentDTO payment;
 }

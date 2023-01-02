@@ -2,24 +2,15 @@ package com.example.springcarrental.model;
 
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
+@EqualsAndHashCode(callSuper = true)
 @Entity
 @Data
 @NoArgsConstructor
-public class Agent {
-    @Id
-    @GeneratedValue
-    private Long id;
-
-    @ManyToOne
-    private Agency agency;
-
-    //CONSTRUCTORS
-    public Agent(Agency agency) {
-        this.agency = agency;
-    }
+public class Agent extends AppUser{
 
 }

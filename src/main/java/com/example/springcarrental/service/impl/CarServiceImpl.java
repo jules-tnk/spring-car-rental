@@ -61,4 +61,9 @@ public class CarServiceImpl implements CarService {
         }
         return null;
     }
+
+    /*@Override
+    public Car findFirstAvailable(CarDescription carDescription) {
+        return repository.findFirstByDescriptionAndAvailableIsTrue(carDescription);
+    }*/
 }

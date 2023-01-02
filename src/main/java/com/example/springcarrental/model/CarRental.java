@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -11,7 +12,7 @@ import java.util.List;
 @NoArgsConstructor
 public class CarRental {
 
-    enum Status{
+    public enum Status{
         RESERVED,
         TAKEN,
         RETURNED
@@ -22,20 +23,19 @@ public class CarRental {
     private Long id;
 
     @ManyToOne
-    private AppUser appUser;
+    private AppUser client;
 
     @ManyToOne
     private Car car;
 
-    private double price;
+    private Status status;
 
     @OneToMany
-    private List<Payment> payments;
+    private List<Payment> payments = new ArrayList<Payment>();
 
-    public CarRental(AppUser appUser, Car car, double price, List<Payment> payments) {
-        this.appUser = appUser;
+    public CarRental(AppUser client, Car car, List<Payment> payments) {
+        this.client = client;
         this.car = car;
-        this.price = price;
         this.payments = payments;
     }
 
