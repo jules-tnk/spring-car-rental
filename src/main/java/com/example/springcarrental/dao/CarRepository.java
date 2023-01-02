@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CarRepository extends PagingAndSortingRepository<Car, String> {
-    //public Car findFirstByDescriptionAndAvailableIsTrue(CarDescription description);
+    public Car findFirstByDescription_IdAndIsAvailableIsTrue(Long descriptionId);
 }

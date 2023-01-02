@@ -12,6 +12,8 @@ public class UserDTO {
 
     private String email;
 
+    private String password;
+
     private int phoneNumber;
 
     public UserDTO(String firstName, String lastName, String email, int phoneNumber) {

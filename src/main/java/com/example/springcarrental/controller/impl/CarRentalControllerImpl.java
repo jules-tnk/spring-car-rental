@@ -5,13 +5,9 @@ import com.example.springcarrental.dto.CarRentalDTO;
 import com.example.springcarrental.dto.incoming.CarRentalRequestDTO;
 import com.example.springcarrental.mapper.CarRentalMapper;
 import com.example.springcarrental.mapper.PaymentMapper;
-import com.example.springcarrental.model.AppUser;
-import com.example.springcarrental.model.CarRental;
-import com.example.springcarrental.model.Payment;
-import com.example.springcarrental.service.CarDescriptionService;
-import com.example.springcarrental.service.CarRentalService;
-import com.example.springcarrental.service.PaymentService;
-import com.example.springcarrental.service.UserService;
+import com.example.springcarrental.model.*;
+import com.example.springcarrental.service.*;
+import com.example.springcarrental.service.impl.CarServiceImpl;
 import org.mapstruct.factory.Mappers;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -20,6 +16,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RequestMapping("/api/car-rental")
@@ -28,15 +25,17 @@ public class CarRentalControllerImpl implements CarRentalController {
     private final CarRentalService carRentalService;
     private final UserService userService;
     private final CarDescriptionService carDescriptionService;
+    private final CarServiceImpl carService;
 
     private final PaymentService paymentService;
     private final CarRentalMapper carRentalMapper = Mappers.getMapper(CarRentalMapper.class);
     private final PaymentMapper paymentMapper = Mappers.getMapper(PaymentMapper.class);
 
-    public CarRentalControllerImpl(CarRentalService carRentalService, UserService userService, CarDescriptionService carDescriptionService, PaymentService paymentService) {
+    public CarRentalControllerImpl(CarRentalService carRentalService, UserService userService, CarDescriptionService carDescriptionService, CarServiceImpl carService, PaymentService paymentService) {
         this.carRentalService = carRentalService;
         this.userService = userService;
         this.carDescriptionService = carDescriptionService;
+        this.carService = carService;
         this.paymentService = paymentService;
     }
 
@@ -88,9 +87,24 @@ public class CarRentalControllerImpl implements CarRentalController {
     @PostMapping("/create")
     public CarRentalDTO createNewRental(@RequestBody CarRentalRequestDTO carRentalRequest) {
         AppUser client = userService.getUserByEmail(carRentalRequest.getUserEmail());
-        //CarDescription carDescription = car
+        //Get the client by his email
+        if (client==null){
+            return null;
+        }
+        //get the car description by id
+        Optional<CarDescription> carDescriptionOpt = carDescriptionService.findById(carRentalRequest.getCarDescriptionId());
+        if (!carDescriptionOpt.isPresent()){
+            return null;
+        }
+        //get first the car available by description
+        Car carToRent = carService.findFirstAvailable(carDescriptionOpt.get());
+        if (carToRent==null){
+            return null;
+        }
+
         CarRental newCarRental = new CarRental();
         newCarRental.setClient(client);
+        newCarRental.setCar(carToRent);
         newCarRental.setStatus(CarRental.Status.RESERVED);
         Payment firstPayment = paymentMapper.asEntity(carRentalRequest.getPayment());
         newCarRental.getPayments().add(firstPayment);

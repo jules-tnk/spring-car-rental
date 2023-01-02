@@ -2,6 +2,7 @@ package com.example.springcarrental.service.impl;
 
 import com.example.springcarrental.dao.CarRepository;
 import com.example.springcarrental.model.Car;
+import com.example.springcarrental.model.CarDescription;
 import com.example.springcarrental.service.CarService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -62,8 +63,8 @@ public class CarServiceImpl implements CarService {
         return null;
     }
 
-    /*@Override
+    //@Override
     public Car findFirstAvailable(CarDescription carDescription) {
-        return repository.findFirstByDescriptionAndAvailableIsTrue(carDescription);
-    }*/
+        return repository.findFirstByDescription_IdAndIsAvailableIsTrue(carDescription.getId());
+    }
 }
