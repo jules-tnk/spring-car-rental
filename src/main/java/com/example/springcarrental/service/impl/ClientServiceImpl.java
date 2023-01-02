@@ -61,4 +61,10 @@ public class ClientServiceImpl implements ClientService {
         }
         return null;
     }
+
+
+    @Override
+    public Client getByEmail(String email) {
+        return repository.findByEmail(email);
+    }
 }

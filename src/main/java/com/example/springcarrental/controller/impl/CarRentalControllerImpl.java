@@ -8,6 +8,7 @@ import com.example.springcarrental.mapper.PaymentMapper;
 import com.example.springcarrental.model.*;
 import com.example.springcarrental.service.*;
 import com.example.springcarrental.service.impl.CarServiceImpl;
+import com.example.springcarrental.service.impl.ClientServiceImpl;
 import org.mapstruct.factory.Mappers;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -23,7 +24,7 @@ import java.util.stream.Collectors;
 @RestController
 public class CarRentalControllerImpl implements CarRentalController {
     private final CarRentalService carRentalService;
-    private final UserService userService;
+    private final ClientServiceImpl clientService;
     private final CarDescriptionService carDescriptionService;
     private final CarServiceImpl carService;
 
@@ -31,9 +32,9 @@ public class CarRentalControllerImpl implements CarRentalController {
     private final CarRentalMapper carRentalMapper = Mappers.getMapper(CarRentalMapper.class);
     private final PaymentMapper paymentMapper = Mappers.getMapper(PaymentMapper.class);
 
-    public CarRentalControllerImpl(CarRentalService carRentalService, UserService userService, CarDescriptionService carDescriptionService, CarServiceImpl carService, PaymentService paymentService) {
+    public CarRentalControllerImpl(CarRentalService carRentalService, ClientServiceImpl clientService, CarDescriptionService carDescriptionService, CarServiceImpl carService, PaymentService paymentService) {
         this.carRentalService = carRentalService;
-        this.userService = userService;
+        this.clientService = clientService;
         this.carDescriptionService = carDescriptionService;
         this.carService = carService;
         this.paymentService = paymentService;
@@ -86,7 +87,7 @@ public class CarRentalControllerImpl implements CarRentalController {
     @Override
     @PostMapping("/create")
     public CarRentalDTO createNewRental(@RequestBody CarRentalRequestDTO carRentalRequest) {
-        AppUser client = userService.getUserByEmail(carRentalRequest.getUserEmail());
+        AppUser client = clientService.getByEmail(carRentalRequest.getClientEmail());
         //Get the client by his email
         if (client==null){
             return null;

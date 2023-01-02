@@ -3,18 +3,12 @@ package com.example.springcarrental.dto;
 import com.example.springcarrental.model.Agency;
 import com.example.springcarrental.model.AppUser;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+@EqualsAndHashCode(callSuper = true)
 @Data
 @NoArgsConstructor
-public class ManagerDTO {
-    private Long id;
-    private AppUser appUser;
-    private Agency agency;
-
-    public ManagerDTO(AppUser appUser, Agency agency) {
-        this.appUser = appUser;
-        this.agency = agency;
-    }
+public class ManagerDTO extends UserDTO{
 
 }

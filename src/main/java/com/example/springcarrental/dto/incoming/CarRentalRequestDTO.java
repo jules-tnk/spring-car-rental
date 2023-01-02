@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class CarRentalRequestDTO {
-    private String userEmail;
+    private String clientEmail;
     private Long CarDescriptionId;
     private PaymentDTO payment;
 }
