@@ -14,5 +14,5 @@ import javax.persistence.OneToOne;
 @Data
 @NoArgsConstructor
 public class Manager extends AppUser {
-
+    private static String role = "MANAGER";
 }

@@ -9,7 +9,6 @@ import javax.persistence.*;
 @Data
 @NoArgsConstructor
 public class AppUser {
-
     @Id
     @GeneratedValue
     private Long id;
@@ -28,10 +27,12 @@ public class AppUser {
 
     private int phoneNumber;
 
+
     public AppUser(String firstName, String lastName, String email, int phoneNumber) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.phoneNumber = phoneNumber;
     }
+
 }

@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -32,6 +33,10 @@ public class CarRental {
 
     @OneToMany
     private List<Payment> payments = new ArrayList<Payment>();
+
+    private Date startDate;
+    private Date endDate;
+
 
     public CarRental(AppUser client, Car car, List<Payment> payments) {
         this.client = client;

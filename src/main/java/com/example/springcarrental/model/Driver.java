@@ -14,5 +14,5 @@ import javax.persistence.OneToOne;
 @Data
 @NoArgsConstructor
 public class Driver extends AppUser {
-
+    private static String role = "DRIVER";
 }
