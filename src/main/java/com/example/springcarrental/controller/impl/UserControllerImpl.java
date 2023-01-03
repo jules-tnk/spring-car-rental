@@ -30,9 +30,7 @@ public class UserControllerImpl implements UserController {
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     //@ResponseStatus(HttpStatus.CREATED)
     public UserDTO save(@RequestBody UserDTO userDTO) {
-        System.out.println(userDTO);
         AppUser appUser = userMapper.asEntity(userDTO);
-        System.out.println(appUser);
         return userMapper.asDTO(userService.save(appUser));
     }
 
